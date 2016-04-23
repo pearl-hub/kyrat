@@ -1,0 +1,53 @@
+#!/bin/bash
+# This is a kyrat wrapper that introduces few Pearl utitilities.
+
+MANPATH=$MANPATH:$PEARL_PKGDIR/module/man
+PATH=$PATH:$PEARL_PKGDIR/module/bin
+
+_cleanup_link() {
+    local kyrat_link=$1
+    [ -L "${kyrat_link}" ] && [ ! -e "${kyrat_link}" ] && rm -f "${kyrat_link}"
+}
+
+_check_and_link() {
+    local kyrat_link=$1
+    local pearl_file=$2
+    [ ! -f "${kyrat_link}" ] && \
+        [ -f "$pearl_file" ] && \
+        ln -s "$pearl_file" "$kyrat_link"
+}
+
+KYRAT_HOME=${HOME}/.config/kyrat
+
+KYRAT_ALIASES=${KYRAT_HOME}/bashrc.d/pearl_aliases.sh
+PEARL_ALIASES=$PEARL_HOME/packages/pearl/sesalia/aliases.sh
+
+KYRAT_OPS=${KYRAT_HOME}/bashrc.d/pearl_ops.sh
+PEARL_OPS=$PEARL_HOME/packages/pearl/ops/ops.sh
+
+KYRAT_BASH=${KYRAT_HOME}/bashrc.d/pearl_bash.sh
+PEARL_BASH=$PEARL_HOME/packages/pearl/bash/bash.bash
+
+KYRAT_INPUTRC=${KYRAT_HOME}/inputrc.d/pearl_inputrc
+PEARL_INPUTRC=$PEARL_HOME/packages/pearl/bash/inputrc
+
+KYRAT_VIM=${KYRAT_HOME}/vimrc.d/pearl_vimrc
+PEARL_VIM=$PEARL_HOME/packages/pearl/vim/vimrc
+
+# Cleanup broken links
+_cleanup_link "$KYRAT_ALIASES"
+_cleanup_link "$KYRAT_OPS"
+_cleanup_link "$KYRAT_BASH"
+_cleanup_link "$KYRAT_INPUTRC"
+_cleanup_link "$KYRAT_VIM"
+
+mkdir -p "${KYRAT_HOME}/bashrc.d/"
+mkdir -p "${KYRAT_HOME}/inputrc.d/"
+mkdir -p "${KYRAT_HOME}/vimrc.d/"
+_check_and_link "${KYRAT_ALIASES}" "${PEARL_ALIASES}"
+_check_and_link "${KYRAT_OPS}" "${PEARL_OPS}"
+_check_and_link "${KYRAT_BASH}" "${PEARL_BASH}"
+_check_and_link "${KYRAT_INPUTRC}" "${PEARL_INPUTRC}"
+_check_and_link "${KYRAT_VIM}" "${PEARL_VIM}"
+
+$(dirname $0)/../module/bin/kyrat $@

@@ -20,7 +20,7 @@ _check_and_link() {
 KYRAT_HOME=${HOME}/.config/kyrat
 
 KYRAT_ALIASES=${KYRAT_HOME}/bashrc.d/pearl_aliases.sh
-PEARL_ALIASES=$PEARL_HOME/packages/pearl/sesalia/aliases.sh
+PEARL_ALIASES=$PEARL_HOME/packages/pearl/sesaila/aliases.sh
 
 KYRAT_OPS=${KYRAT_HOME}/bashrc.d/pearl_ops.sh
 PEARL_OPS=$PEARL_HOME/packages/pearl/ops/ops.sh

@@ -1,4 +1,9 @@
+if not contains $PEARL_PKGDIR/bin $PATH
+    set PATH $PATH $PEARL_PKGDIR/bin
+end
 
-set MANPATH $MANPATH $PEARL_PKGDIR/module/man
-set PATH $PATH $PEARL_PKGDIR/bin
+if not contains $PEARL_PKGDIR/module/man $MANPATH
+    set MANPATH $MANPATH $PEARL_PKGDIR/module/man
+end
+
 # vim: ft=sh

@@ -23,13 +23,13 @@ KYRAT_OPS=${KYRAT_HOME}/bashrc.d/pearl_ops.sh
 PEARL_OPS=$PEARL_HOME/packages/pearl/ops/ops.sh
 
 KYRAT_BASH=${KYRAT_HOME}/bashrc.d/pearl_bash.sh
-PEARL_BASH=$PEARL_HOME/packages/pearl/bash/bash.bash
+PEARL_BASH=$PEARL_HOME/packages/pearl/dot-bash/bash.bash
 
 KYRAT_INPUTRC=${KYRAT_HOME}/inputrc.d/pearl_inputrc
-PEARL_INPUTRC=$PEARL_HOME/packages/pearl/bash/inputrc
+PEARL_INPUTRC=$PEARL_HOME/packages/pearl/dot-bash/inputrc
 
 KYRAT_VIM=${KYRAT_HOME}/vimrc.d/pearl_vimrc
-PEARL_VIM=$PEARL_HOME/packages/pearl/vim/vimrc
+PEARL_VIM=$PEARL_HOME/packages/pearl/dot-vim/vimrc
 
 # Cleanup broken links
 _cleanup_link "$KYRAT_ALIASES"

@@ -1,18 +1,14 @@
 #!/bin/bash
-# This is a kyrat wrapper that introduces few Pearl utitilities.
+# This is a kyrat wrapper that introduces few Pearl utilities.
+# This creates few symlink to ~/.config/kyrat/pearl_* from scripts
+# of some Pearl packages.
 
-_cleanup_link() {
-    local kyrat_link=$1
-    [ -L "${kyrat_link}" ] && [ ! -e "${kyrat_link}" ] && rm -f "${kyrat_link}"
-}
+set -e -o pipefail
 
-_check_and_link() {
-    local kyrat_link=$1
-    local pearl_file=$2
-    [ ! -f "${kyrat_link}" ] && \
-        [ -f "$pearl_file" ] && \
-        ln -s "$pearl_file" "$kyrat_link"
-}
+[[ -z "$PEARL_ROOT" ]] && { echo "Error: The variable PEARL_ROOT must be specified in order to run this script."; exit 1; }
+[[ -d "$PEARL_ROOT" ]] || { echo "Error: The value in variable PEARL_ROOT is not a directory."; exit 2; }
+
+KYRAT=$(dirname "$(readlink -f $0)")/../module/bin/kyrat
 
 KYRAT_HOME=${HOME}/.config/kyrat
 
@@ -31,20 +27,22 @@ PEARL_INPUTRC=$PEARL_HOME/packages/pearl/dot-bash/inputrc
 KYRAT_VIM=${KYRAT_HOME}/vimrc.d/pearl_vimrc
 PEARL_VIM=$PEARL_HOME/packages/pearl/dot-vim/vimrc
 
-# Cleanup broken links
-_cleanup_link "$KYRAT_ALIASES"
-_cleanup_link "$KYRAT_OPS"
-_cleanup_link "$KYRAT_BASH"
-_cleanup_link "$KYRAT_INPUTRC"
-_cleanup_link "$KYRAT_VIM"
+source $PEARL_ROOT/lib/utils/utils.sh
 
+# Creates kyrat home directories if they do not exist
 mkdir -p "${KYRAT_HOME}/bashrc.d/"
 mkdir -p "${KYRAT_HOME}/inputrc.d/"
 mkdir -p "${KYRAT_HOME}/vimrc.d/"
-_check_and_link "${KYRAT_ALIASES}" "${PEARL_ALIASES}"
-_check_and_link "${KYRAT_OPS}" "${PEARL_OPS}"
-_check_and_link "${KYRAT_BASH}" "${PEARL_BASH}"
-_check_and_link "${KYRAT_INPUTRC}" "${PEARL_INPUTRC}"
-_check_and_link "${KYRAT_VIM}" "${PEARL_VIM}"
 
-$(dirname "$(readlink -f $0)")/../module/bin/kyrat $@
+[ -f "${PEARL_ALIASES}" ] && \
+    link_to "${PEARL_ALIASES}" "${KYRAT_ALIASES}"
+[ -f "${PEARL_OPS}" ] && \
+    link_to "${PEARL_OPS}" "${KYRAT_OPS}"
+[ -f "${PEARL_BASH}" ] && \
+    link_to "${PEARL_BASH}" "${KYRAT_BASH}"
+[ -f "${PEARL_INPUTRC}" ] && \
+    link_to "${PEARL_INPUTRC}" "${KYRAT_INPUTRC}"
+[ -f "${PEARL_VIM}" ] && \
+    link_to "${PEARL_VIM}" "${KYRAT_VIM}"
+
+$KYRAT "$@"

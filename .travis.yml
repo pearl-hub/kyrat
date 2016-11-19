@@ -1,0 +1,21 @@
+# vim: ft=yaml
+language: bash
+sudo: required
+
+before_install:
+  - sudo apt-get -qq update
+  - sudo apt-get install -y zsh
+  - ./tests/integ-tests/install-fish.sh "2.2.0"
+
+install:
+  - ssh-keygen -t rsa -N '' -f ~/.ssh/id_rsa
+  - cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
+  - curl -sL https://git.io/vV4yE | sh
+  - echo "PEARL_PACKAGES[test]=\"${PWD}\"" >> ~/.config/pearl/pearl.conf
+
+script:
+  - ./tests/unit-tests/unit-tests.sh
+  - ./tests/checkstyle/checkstyle.sh
+  - bash ./tests/integ-tests/integ-tests.sh
+  - zsh ./tests/integ-tests/integ-tests.sh
+  - fish ./tests/integ-tests/integ-tests.fish

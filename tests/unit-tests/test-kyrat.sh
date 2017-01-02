@@ -1,4 +1,5 @@
-#!/bin/bash
+#!/usr/bin/env bash
+
 source "$(dirname $0)/../utils/utils.sh"
 
 KYRAT_LOCATION="$(dirname $0)/../.."

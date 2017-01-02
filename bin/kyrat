@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # This is a kyrat wrapper that introduces few Pearl utilities.
 # This creates few symlink to ~/.config/kyrat/pearl_* from scripts
 # of some Pearl packages.
@@ -7,6 +7,11 @@ set -e -o pipefail
 
 [[ -z "$PEARL_ROOT" ]] && { echo "Error: The variable PEARL_ROOT must be specified in order to run this script."; exit 1; }
 [[ -d "$PEARL_ROOT" ]] || { echo "Error: The value in variable PEARL_ROOT is not a directory."; exit 2; }
+
+source $PEARL_ROOT/lib/utils/utils.sh
+source $PEARL_ROOT/lib/utils/osx-compat.sh
+# Update PATH for OSX
+pearl_update_path
 
 KYRAT=$(dirname "$(readlink -f $0)")/../module/bin/kyrat
 
@@ -26,8 +31,6 @@ PEARL_INPUTRC=$PEARL_HOME/packages/pearl/dot-bash/inputrc
 
 KYRAT_VIM=${KYRAT_HOME}/vimrc.d/pearl_vimrc
 PEARL_VIM=$PEARL_HOME/packages/pearl/dot-vim/vimrc
-
-source $PEARL_ROOT/lib/utils/utils.sh
 
 # Creates kyrat home directories if they do not exist
 mkdir -p "${KYRAT_HOME}/bashrc.d/"

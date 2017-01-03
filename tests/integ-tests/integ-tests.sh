@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 set -e
 
@@ -17,4 +17,3 @@ for path in "$KYRAT_HOME/bashrc.d/pearl_*" \
 do
     [ ! -e $path ]
 done
-

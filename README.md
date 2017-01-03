@@ -15,7 +15,7 @@ Description
 ===========
 
 - name: `pearl`
-- description: Wrapper of [kyrat](https://github.com/fsquillace/kyrat): 20 lines script that brings dotfiles in a ssh session
+- description: Wrapper of [kyrat](https://github.com/fsquillace/kyrat): SSH wrapper script that brings your dotfiles always with you on Linux and OSX
 - author: Filippo Squillace
 - username: fsquillace
 - OS compatibility: linux, osx
@@ -46,6 +46,7 @@ Dependencies
 The main dependencies are the following:
 
 - [Pearl](https://github.com/pearl-core/pearl)
+- [GNU coreutils](https://www.gnu.org/software/coreutils/)
 
 Troubleshooting
 ===============

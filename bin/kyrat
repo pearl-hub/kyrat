@@ -25,9 +25,6 @@ KYRAT_HOME=${HOME}/.config/kyrat
 KYRAT_ALIASES=${KYRAT_HOME}/bashrc.d/pearl_aliases.sh
 PEARL_ALIASES=$PEARL_HOME/packages/pearl/sesaila/aliases
 
-KYRAT_OPS=${KYRAT_HOME}/bashrc.d/pearl_ops.sh
-PEARL_OPS=$PEARL_HOME/packages/pearl/ops/ops.sh
-
 KYRAT_BASH=${KYRAT_HOME}/bashrc.d/pearl_bash.sh
 PEARL_BASH=$PEARL_HOME/packages/pearl/dot-bash/bash.bash
 
@@ -44,8 +41,6 @@ mkdir -p "${KYRAT_HOME}/vimrc.d/"
 
 [ -f "${PEARL_ALIASES}" ] && \
     link_to "${PEARL_ALIASES}" "${KYRAT_ALIASES}"
-[ -f "${PEARL_OPS}" ] && \
-    link_to "${PEARL_OPS}" "${KYRAT_OPS}"
 [ -f "${PEARL_BASH}" ] && \
     link_to "${PEARL_BASH}" "${KYRAT_BASH}"
 [ -f "${PEARL_INPUTRC}" ] && \

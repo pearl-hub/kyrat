@@ -38,7 +38,7 @@ dotfiles and configurations from other Pearl packages. In order to get such
 dotfiles transferred automatically by kyrat install any of the following packages:
 
 ```sh
-pearl install sesaila dot-bash ops dot-vim
+pearl install sesaila dot-bash dot-vim
 ```
 
 Dependencies

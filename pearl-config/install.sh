@@ -4,7 +4,7 @@ function post_install(){
     info "Install the following Pearl packages"
     info "to get the related dotfiles/configurations in the ssh session"
     info "when accessing with kyrat:"
-    info "> pearl install sesaila ops dot-bash dot-vim"
+    info "> pearl install sesaila dot-bash dot-vim"
 
     return 0
 }

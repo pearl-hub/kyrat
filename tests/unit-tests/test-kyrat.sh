@@ -18,8 +18,6 @@ function setUp(){
     pearlSetUp
     mkdir -p $PEARL_HOME/packages/pearl/sesaila
     touch $PEARL_HOME/packages/pearl/sesaila/aliases
-    mkdir -p $PEARL_HOME/packages/pearl/ops
-    touch $PEARL_HOME/packages/pearl/ops/ops.sh
     mkdir -p $PEARL_HOME/packages/pearl/dot-bash
     touch $PEARL_HOME/packages/pearl/dot-bash/bash.bash
     mkdir -p $PEARL_HOME/packages/pearl/dot-bash
@@ -35,8 +33,6 @@ function tearDown(){
 function test_kyrat(){
     assertCommandFailOnStatus 255 $PKG_LOCATION/bin/kyrat --help
     [[ -L $HOME/.config/kyrat/bashrc.d/pearl_aliases.sh ]]
-    assertEquals 0 $?
-    [[ -L $HOME/.config/kyrat/bashrc.d/pearl_ops.sh ]]
     assertEquals 0 $?
     [[ -L $HOME/.config/kyrat/bashrc.d/pearl_bash.sh ]]
     assertEquals 0 $?

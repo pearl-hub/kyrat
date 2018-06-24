@@ -18,7 +18,17 @@ install:
   - ssh-keygen -t rsa -N '' -f ~/.ssh/id_rsa
   - cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
   - curl -sL https://git.io/vV4yE | sh
+  - echo 'PEARL_PACKAGES["sesaila"]="https://github.com/pearl-hub/sesaila.git"' >> $HOME/.config/pearl/pearl.conf
+  - echo 'PEARL_PACKAGES["dot-vim"]="https://github.com/pearl-hub/dot-vim.git"' >> $HOME/.config/pearl/pearl.conf
+  - echo 'PEARL_PACKAGES["dot-bash"]="https://github.com/pearl-hub/dot-bash.git"' >> $HOME/.config/pearl/pearl.conf
   - echo "PEARL_PACKAGES[test]=\"${PWD}\"" >> ~/.config/pearl/pearl.conf
 
 script:
-  - bash ./tests/test-utils/integ-tests/default-integ-tests.sh
+  - hash -r
+  - git --version
+  - bash --version
+  - zsh --version
+  - fish --version
+  - bash ./tests/test-utils/integ-tests/integ-tests.sh
+  - zsh ./tests/test-utils/integ-tests/integ-tests.sh
+  - fish ./tests/test-utils/integ-tests/integ-tests.fish

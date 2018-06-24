@@ -1,12 +1,3 @@
-[submodule "module"]
-	path = module
-	url = https://github.com/fsquillace/kyrat.git
-[submodule "buava"]
-	path = buava
-	url = https://github.com/fsquillace/buava.git
 [submodule "tests/test-utils"]
 	path = tests/test-utils
 	url = https://github.com/pearl-core/test-utils.git
-[submodule "tests/bunit"]
-	path = tests/bunit
-	url = https://github.com/fsquillace/bunit.git

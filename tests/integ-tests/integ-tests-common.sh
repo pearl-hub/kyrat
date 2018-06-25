@@ -2,15 +2,20 @@
 #
 # This is executed on bash, zsh and fish.
 
-pearl install dot-vim
+
+pearl install default/dot-vim
+pearl update test
 
 [ ! -e $HOME/.config/kyrat/bashrc.d/pearl_aliases.sh ]
-pearl install sesaila
+pearl install default/sesaila
+pearl update test
+
 kyrat -v -o "StrictHostKeyChecking no" localhost -- q
 [ -e $HOME/.config/kyrat/bashrc.d/pearl_aliases.sh ]
 
 [ ! -e $HOME/.config/kyrat/bashrc.d/pearl_bash.sh ]
-pearl install dot-bash
+pearl install default/dot-bash
+pearl update test
 kyrat -v -o "StrictHostKeyChecking no" localhost -- "[[ \\\$EDITOR == \"vim\" ]]"
 [ -e $HOME/.config/kyrat/bashrc.d/pearl_bash.sh ]
 

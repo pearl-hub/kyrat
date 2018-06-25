@@ -13,6 +13,10 @@ Kyrat
 
 Description
 ===========
+This is a kyrat wrapper that introduces few Pearl utilities.
+This creates few symlink to `~/.config/kyrat/pearl_*` from scripts of
+some Pearl packages (sesaila, dot-vim and dot-bash).
+
 
 - name: `pearl`
 - description: Wrapper of [kyrat](https://github.com/fsquillace/kyrat): SSH wrapper script that brings your dotfiles always with you on Linux and OSX

@@ -6,9 +6,12 @@ function post_install(){
 
     link_to_path "${PEARL_PKGVARDIR}/kyrat/bin/kyrat"
 
+    pearl emerge ${PEARL_PKGREPONAME}/dot-vim
+    pearl emerge ${PEARL_PKGREPONAME}/dot-bash
+    pearl emerge ${PEARL_PKGREPONAME}/sesaila
 
-    local kyrat_home=${HOME}/.config/kyrat
     # Creates kyrat home directories if they do not exist
+    local kyrat_home=${HOME}/.config/kyrat
     mkdir -p "${kyrat_home}/bashrc.d/"
     mkdir -p "${kyrat_home}/inputrc.d/"
     mkdir -p "${kyrat_home}/vimrc.d/"
@@ -25,30 +28,10 @@ function post_install(){
     local kyrat_vim=${kyrat_home}/vimrc.d/pearl_vimrc
     local pearl_vim=$PEARL_HOME/packages/${PEARL_PKGREPONAME}/dot-vim/vimrc
 
-    [ -f "${pearl_aliases}" ] && { \
-        info "Detected configuration from sesaila package. Installing it into kyrat...";
-        link_to "${pearl_aliases}" "${kyrat_aliases}";
-    }
-    [ -f "${pearl_bash}" ] && { \
-        info "Detected configuration from dot-bash package. Installing it into kyrat...";
-        link_to "${pearl_bash}" "${kyrat_bash}"
-    }
-    [ -f "${pearl_inputrc}" ] && { \
-        info "Detected inputrc configuration from dot-bash package. Installing it into kyrat...";
-        link_to "${pearl_inputrc}" "${kyrat_inputrc}"
-    }
-    [ -f "${pearl_vim}" ] && { \
-        info "Detected configuration from dot-vim package. Installing it into kyrat...";
-        link_to "${pearl_vim}" "${kyrat_vim}"
-    }
-
-    echo
-    info "Install the following Pearl packages"
-    info "to get the related dotfiles/configurations in the ssh session"
-    info "when accessing with kyrat:"
-    info "> pearl install sesaila dot-bash dot-vim"
-    info "And update this package afterwards:"
-    info "> pearl update ${PEARL_PKGNAME}"
+    link_to "${pearl_aliases}" "${kyrat_aliases}";
+    link_to "${pearl_bash}" "${kyrat_bash}"
+    link_to "${pearl_inputrc}" "${kyrat_inputrc}"
+    link_to "${pearl_vim}" "${kyrat_vim}"
 
     return 0
 }

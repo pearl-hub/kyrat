@@ -1,3 +1,6 @@
+DEPENDS=("${PEARL_PKGREPONAME}/dot-vim" "${PEARL_PKGREPONAME}/dot-bash" "${PEARL_PKGREPONAME}/sesaila")
+
+
 function post_install(){
     local giturl=https://github.com/fsquillace/kyrat.git
 
@@ -5,10 +8,6 @@ function post_install(){
     install_or_update_git_repo $giturl "${PEARL_PKGVARDIR}/kyrat" master
 
     link_to_path "${PEARL_PKGVARDIR}/kyrat/bin/kyrat"
-
-    pearl emerge ${PEARL_PKGREPONAME}/dot-vim
-    pearl emerge ${PEARL_PKGREPONAME}/dot-bash
-    pearl emerge ${PEARL_PKGREPONAME}/sesaila
 
     # Creates kyrat home directories if they do not exist
     local kyrat_home=${HOME}/.config/kyrat

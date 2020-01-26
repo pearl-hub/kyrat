@@ -6,10 +6,6 @@ function post_install(){
 
     link_to_path "${PEARL_PKGVARDIR}/kyrat/bin/kyrat"
 
-    pearl emerge ${PEARL_PKGREPONAME}/dot-vim
-    pearl emerge ${PEARL_PKGREPONAME}/dot-bash
-    pearl emerge ${PEARL_PKGREPONAME}/sesaila
-
     # Creates kyrat home directories if they do not exist
     local kyrat_home=${HOME}/.config/kyrat
     mkdir -p "${kyrat_home}/bashrc.d/"

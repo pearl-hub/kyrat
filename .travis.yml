@@ -21,10 +21,7 @@ install:
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then ./tests/test-utils/installs/install-linux-pearl.sh; fi;
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then ./tests/test-utils/installs/install-osx-pearl.sh; fi;
 
-  - echo 'PEARL_PACKAGES["sesaila"]={"url": "https://github.com/pearl-hub/sesaila.git"}' >> $HOME/.config/pearl/pearl.conf
-  - echo 'PEARL_PACKAGES["dot-vim"]={"url": "https://github.com/pearl-hub/dot-vim.git"}' >> $HOME/.config/pearl/pearl.conf
-  - echo 'PEARL_PACKAGES["dot-bash"]={"url": "https://github.com/pearl-hub/dot-bash.git"}' >> $HOME/.config/pearl/pearl.conf
-  - echo "PEARL_PACKAGES[\"test\"]={\"url\": \"${PWD}\"}" >> ~/.config/pearl/pearl.conf
+  - ./tests/integ-tests/init-pearl-conf.sh
 
 script:
   - hash -r

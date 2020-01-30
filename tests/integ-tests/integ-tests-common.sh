@@ -11,5 +11,3 @@
 kyrat -v -o "StrictHostKeyChecking no" localhost -- q
 
 kyrat -v -o "StrictHostKeyChecking no" localhost -- "[[ \\\$EDITOR == \"vim\" ]]"
-
-pearl remove sesaila dot-bash dot-vim
